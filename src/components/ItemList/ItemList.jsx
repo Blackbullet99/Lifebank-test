@@ -12,6 +12,8 @@ const ItemList = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
+  const [isExpanded, setIsExpanded] = useState(false);
+
   const itemsPerPage = 5;
 
   useEffect(() => {
@@ -35,6 +37,10 @@ const ItemList = () => {
 
   const handleChange = (event, value) => {
     setPage(value);
+  };
+
+  const toggleReadMore = () => {
+    setIsExpanded(!isExpanded);
   };
 
   const displayedFilms = films.slice(
