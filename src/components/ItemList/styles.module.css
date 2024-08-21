@@ -1,0 +1,14 @@
+.itemList__container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.pagination {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.title {
+  color: #b70303;
+}
