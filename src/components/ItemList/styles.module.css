@@ -9,8 +9,12 @@
   margin-bottom: 2rem;
 }
 
-.title {
+.text {
+  cursor: pointer;
+  text-decoration: underline;
+  font-size: 0.9rem;
   color: #b70303;
+  font-weight: 700;
 }
 
 @media screen and (max-width: 768px) {

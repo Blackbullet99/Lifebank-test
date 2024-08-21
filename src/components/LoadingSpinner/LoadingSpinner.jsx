@@ -11,7 +11,7 @@ const LoadingSpinner = ({
   className,
 }) => {
   const customSpinnerColor = {
-    borderTopColor: color ? color : "#99AA38",
+    borderTopColor: color ? color : "#b70303",
     marginLeft: marginLeft ? marginLeft : "auto",
     marginRight: marginRight ? marginRight : "auto",
     width: width ? width : "1rem",

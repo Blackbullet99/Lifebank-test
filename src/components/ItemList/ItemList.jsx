@@ -7,12 +7,19 @@ import styles from "./styles.module.css";
 import Pagination from "@mui/material/Pagination";
 import Stack from "@mui/material/Stack";
 
+const paragraphStyles = {
+  WebkitLineClamp: 3,
+  WebkitBoxOrient: "vertical",
+  overflow: "hidden",
+  display: "-webkit-box",
+};
+
 const ItemList = () => {
   const [films, setFilms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [page, setPage] = useState(1);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [expandedCards, setExpandedCards] = useState({});
 
   const itemsPerPage = 5;
 
@@ -22,6 +29,7 @@ const ItemList = () => {
       try {
         const data = (await getFilmList()).data;
         const filmList = data?.results;
+
         setFilms(filmList);
         toast.success("Films list fetched successfully.");
       } catch (error) {
@@ -39,8 +47,11 @@ const ItemList = () => {
     setPage(value);
   };
 
-  const toggleReadMore = () => {
-    setIsExpanded(!isExpanded);
+  const expandText = (title) => {
+    setExpandedCards((prev) => ({
+      ...prev,
+      [title]: !prev[title],
+    }));
   };
 
   const displayedFilms = films.slice(
@@ -60,7 +71,15 @@ const ItemList = () => {
             <div key={film.title} className={styles.itemList__card}>
               <Card>
                 <h3 className={styles.title}>{film.title}</h3>
-                <p>{film.opening_crawl}</p>
+                <p style={expandedCards[film.title] ? null : paragraphStyles}>
+                  {film.opening_crawl}
+                </p>
+                <p
+                  onClick={() => expandText(film.title)}
+                  className={styles.text}
+                >
+                  {expandedCards[film.title] ? "Read Less..." : "Read More..."}
+                </p>
               </Card>
             </div>
           ))}
