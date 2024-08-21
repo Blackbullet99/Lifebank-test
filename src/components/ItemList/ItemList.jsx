@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getFilmList } from "../../services/itemListService";
-import { toast } from "sonner";
+import { Toaster, toast } from "sonner";
 import LoadingSpinner from "../LoadingSpinner/LoadingSpinner";
 import Card from "../Card/Card";
 import styles from "./styles.module.css";
@@ -31,6 +31,7 @@ const ItemList = () => {
         const filmList = data?.results;
 
         setFilms(filmList);
+
         toast.success("Films list fetched successfully.");
       } catch (error) {
         setError(error.message || "An error occurred");
@@ -95,6 +96,8 @@ const ItemList = () => {
           sx={{ button: { color: "red" } }}
         />
       </Stack>
+
+      <Toaster position="top-right" reverseOrder={false} richColors />
     </div>
   );
 };
